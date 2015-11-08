@@ -362,6 +362,10 @@ This adheres to the same style guide as
 - Indent is 4 spaces, not hard tabs.
 - Use Unix line endings
 
+## Other Information
+
+Do note that this is more permissive than Mithril in what a component can return. This will accept anything from a single node to a nested array of mixed strings, nodes, and even ES6 Symbols. It'l also accept anything that provides a view function as input, even if it's just a `{view: function () {}}`, returning `undefined`. 
+
 ## License
 
 ISC
