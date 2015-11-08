@@ -7,6 +7,8 @@ Mithril for the server side, done right.
 Supports rendering strings, nodes, and even components. Also features some other
 facets of the Mithril API. You can even render entire pages with this thing.
 
+*(Do note the 0.x semver. The API is still not stable. Things may break at any time.)*
+
 ```
 npm install --save m-iso
 ```
@@ -340,6 +342,7 @@ Use the issue tracker.
 There's also a few things I would like to add eventually, in decreasing order of
 likelihood it's going to get much work done on by me:
 
+- Hooks for pretty-printing.
 - `m.withAttr()` to make function strings similarly to Mithril's making
   anonymous functions.
 - `m.request()` for easier access on server side.
