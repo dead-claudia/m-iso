@@ -4,8 +4,7 @@
 
 Mithril for the server side, done right.
 
-Supports rendering strings, nodes, and even components. Also features some other
-facets of the Mithril API. You can even render entire pages with this thing.
+Supports rendering strings, nodes, and even components. Also features some other facets of the Mithril API. You can even render entire pages with this thing.
 
 *(Do note the 0.x semver. The API is still not stable, and much of this is still a work in progress. Things may break at any time.)*
 
@@ -13,16 +12,11 @@ facets of the Mithril API. You can even render entire pages with this thing.
 npm install --save m-iso
 ```
 
-The string renderer is also browser-safe through Browserify or Webpack, as it's
-pure JS, and doesn't need anything beyond the module loader. It has 0
-dependencies, even on native modules, and it's pretty small, running at about
-4.1kb in a minified, gzipped Browserify standalone build (none is officially
-provided, it's pretty simple).
+The string renderer is also browser-safe through Browserify or Webpack, as it's pure JS, and doesn't need anything beyond the module loader. It has 0 dependencies, even on native modules, and it's pretty small, running at about 4.1kb in a minified, gzipped Browserify standalone build (none is officially provided, it's pretty simple).
 
 ## Examples
 
-A small web page that loads Bootstrap and its dependencies, along with the entry
-script and a `<div>` to mount to.
+A small web page that loads Bootstrap and its dependencies, along with the entry script and a `<div>` to mount to.
 
 ```js
 var m = require("m-iso")
@@ -69,9 +63,7 @@ It also allows for several output formats:
 - XHTML1
 - XML
 
-Much of the virtual DOM node was ~~taken shamelessly~~adapted from Mithril, so
-it supports the full Mithril offering in selector syntax. You can even do things
-like this (another example adapted from the tests):
+Much of the virtual DOM node was ~~taken shamelessly~~adapted from Mithril, so it supports the full Mithril offering in selector syntax. You can even do things like this (another example adapted from the tests):
 
 ```js
 // A simple Android XML view layout, adapted from an Android design-related blog
@@ -136,15 +128,11 @@ var xml = m.render([
 
 **`m(selector, attrs?, ...children)`, `m(component, ...args)`**
 
-[Mithril's virtual DOM factory.](http://mithril.js.org/mithril.html) This also
-works with components, just as Mithril's does.
+[Mithril's virtual DOM factory.](http://mithril.js.org/mithril.html) This also works with components, just as Mithril's does.
 
 **`m.r(name, attrs?, ...children)`**
 
-This prevents parsing the `name` as a selector. For example, `m.r("a.b")`
-returns a virtual DOM node that looks like this:
-`{tag: "a.b", attrs: {}, children: []}`. It's mostly for XML, as one example
-above demonstrated.
+This prevents parsing the `name` as a selector. For example, `m.r("a.b")` returns a virtual DOM node that looks like this: `{tag: "a.b", attrs: {}, children: []}`. It's mostly for XML, as one example above demonstrated.
 
 **`m.r(component, ...args)`**
 
@@ -152,36 +140,27 @@ Alias of `m.component` for consistency.
 
 **`m.component(component, ...args)`**
 
-[Mithril's `m.component()` factory.](http://mithril.js.org/mithril.component.html)
-Works the same as Mithril's.
+[Mithril's `m.component()` factory.](http://mithril.js.org/mithril.component.html) Works the same as Mithril's.
 
 **`m.route.buildQueryString(obj)`**
 
-[Mithril's `m.route.buildQueryString()`.](http://mithril.js.org/mithril.route.html#buildQueryString)
-Works the same as Mithril's.
+[Mithril's `m.route.buildQueryString()`.](http://mithril.js.org/mithril.route.html#buildQueryString) Works the same as Mithril's.
 
 **`m.route.parseQueryString(obj)`**
 
-[Mithril's `m.route.parseQueryString()`.](http://mithril.js.org/mithril.route.html#parseQueryString)
-Works the same as Mithril's.
+[Mithril's `m.route.parseQueryString()`.](http://mithril.js.org/mithril.route.html#parseQueryString) Works the same as Mithril's.
 
 **`m.trust(string)`**
 
-Trust this string. Same as [Mithril's `m.trust()`](http://mithril.js.org/mithril.trust.html).
-If you need to render a string that doesn't need escaping, this is how you do
-it.
+Trust this string. Same as [Mithril's `m.trust()`](http://mithril.js.org/mithril.trust.html). If you need to render a string that doesn't need escaping, this is how you do it.
 
 **`m.render(tree, type="html", voids?)`**
 
-Renders a node tree to some format. It infers the type if you don't give it
-explicitly, but do use a `!doctype` or XML declaration.
+Renders a node tree to some format. It infers the type if you don't give it explicitly, but do use a `!doctype` or XML declaration.
 
-- `tree` - The tree to render. It may be a string, a trusted string, a virtual
-  node, a component with a view, or a possibly nested array of any of the above.
+- `tree` - The tree to render. It may be a string, a trusted string, a virtual node, a component with a view, or a possibly nested array of any of the above.
 
-- `type` - The type to infer by default. Generally, you don't need to pass this
-  argument unless you're rendering a fragment of something other than normal
-  HTML5.
+- `type` - The type to infer by default. Generally, you don't need to pass this argument unless you're rendering a fragment of something other than normal HTML5.
 
   Possible values (this will error if given an invalid, non-null value):
 
@@ -191,17 +170,11 @@ explicitly, but do use a `!doctype` or XML declaration.
   - `"xhtml"` - Legacy XHTML 1
   - `"xml"` - XML 1.0/1.1
 
-  Note that due to an implementation detail, if you pass an explicit `type` and
-  also include an XML declaration, it will be changed as the XML variant of that
-  type, if applicable, e.g. `"html"` to `"html-polygot"`.
+  Note that due to an implementation detail, if you pass an explicit `type` and also include an XML declaration, it will be changed as the XML variant of that type, if applicable, e.g. `"html"` to `"html-polygot"`.
 
-- `voids` - The list to check against to figure out what's a void element and
-  what's not, such as `<br>` and `<img>`. This replaces the internal list for
-  that respective type. This argument is meaningless and ignored when in `"xml"`
-  mode.
+- `voids` - The list to check against to figure out what's a void element and what's not, such as `<br>` and `<img>`. This replaces the internal list for that respective type. This argument is meaningless and ignored when in `"xml"` mode.
 
-Note that also, `type` can be inferred from the tree itself, if you use a
-`!doctype` or XML declaration. Here's how values are inferred
+Note that also, `type` can be inferred from the tree itself, if you use a `!doctype` or XML declaration. Here's how values are inferred
 
 - `"html"`:
 
@@ -266,26 +239,21 @@ Note that also, `type` can be inferred from the tree itself, if you use a
 
 **`m.deferred()`**
 
-[Mithril's `m.deferred()`](mithril.js.org/mithril.deferred.html), with mostly
-same implementation.
+[Mithril's `m.deferred()`](mithril.js.org/mithril.deferred.html), with mostly same implementation.
 
 **`m.sync()`**
 
-[Mithril's `m.sync()`](http://mithril.js.org/mithril.sync.html) with same
-implementation.
+[Mithril's `m.sync()`](http://mithril.js.org/mithril.sync.html) with same implementation.
 
 **`m.prop()`**
 
-[Mithril's `m.prop()`](http://mithril.js.org/mithril.prop.html) with same
-implementation.
+[Mithril's `m.prop()`](http://mithril.js.org/mithril.prop.html) with same implementation.
 
 ## Additional syntax
 
-To support generating DTDs, XML declarations, etc., there are some additional
-syntax this supports on the renderer side.
+To support generating DTDs, XML declarations, etc., there are some additional syntax this supports on the renderer side.
 
-- `"!doctype"` - This string, case-insensitive, turns into a `<!DOCTYPE>`
-  declaration with the appropriate contents. The possible values for it are:
+- `"!doctype"` - This string, case-insensitive, turns into a `<!DOCTYPE>` declaration with the appropriate contents. The possible values for it are:
 
   - `m("!doctype", "html")` - The HTML5 DTD.
 
@@ -317,30 +285,21 @@ syntax this supports on the renderer side.
         "http://www.w3.org/TR/html4/frameset.dtd">
     ```
 
-- `m("?xml")` - This string, case-sensitive, turns into an XML declaration. It
-  takes the following options as attributes:
+- `m("?xml")` - This string, case-sensitive, turns into an XML declaration. It takes the following options as attributes:
 
-  - `version` - The version, either `1.0` or `1.1`. It can be a string or a
-    number that equals that string (which is converted by
-    `version.toPrecision(1)`).
+  - `version` - The version, either `1.0` or `1.1`. It can be a string or a number that equals that string (which is converted by `version.toPrecision(1)`).
 
-  - `encoding` - The encoding to specify in the XML declaration. Defaults to
-    `"utf-8"`.
+  - `encoding` - The encoding to specify in the XML declaration. Defaults to `"utf-8"`.
 
-  - `standalone` - The `standalone` attribute in the XML declaration. It may be
-    `"yes"` or `"no"` (as according to spec), or it may be a boolean, `true` for
-    `"yes"` or `false` for `"no"`
+  - `standalone` - The `standalone` attribute in the XML declaration. It may be `"yes"` or `"no"` (as according to spec), or it may be a boolean, `true` for `"yes"` or `false` for `"no"`
 
-Note that these are parsed as any other tag. XML declaration attributes can be
-specified as normal attributes, such as
-`m("?xml[version=1.0][encoding="utf-8"][standalone=yes]")`.
+Note that these are parsed as any other tag. XML declaration attributes can be specified as normal attributes, such as `m("?xml[version=1.0][encoding="utf-8"][standalone=yes]")`.
 
 ## Bugs and feature requests
 
 Use the issue tracker.
 
-There's also a few things I would like to add eventually, in decreasing order of
-likelihood it's going to get much work done on by me:
+There's also a few things I would like to add eventually, in decreasing order of likelihood it's going to get much work done on by me:
 
 - Hooks for pretty-printing.
 - `m.withAttr()` to make function strings similarly to Mithril's making
@@ -356,11 +315,11 @@ likelihood it's going to get much work done on by me:
 
 ## Contributing
 
-Pull requests are most definitely welcome.
+Pull requests are most definitely welcome. Tests are run through Travis CI on Node 0.10, 0.12, and 4.0 and the last io.js version, so it's easy to catch failing tests.
 
-This adheres to the same style guide as
-[Mithril](https://github.com/impinball/mithril.js/blob/patch-2/CONTRIBUTING.md)
-(TODO: change link once merged) with a couple exceptions:
+This project in its entirety is run through ESLint.
+
+This adheres to the same style guide as [Mithril](https://github.com/impinball/mithril.js/blob/patch-2/CONTRIBUTING.md) (TODO: change link once merged) with a couple exceptions:
 
 - Indent is 4 spaces, not hard tabs.
 - Use Unix line endings
