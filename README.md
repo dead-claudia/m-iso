@@ -1,5 +1,7 @@
 # m-iso
 
+[![Build Status](https://travis-ci.org/impinball/m-iso.svg)](https://travis-ci.org/impinball/m-iso)
+
 Mithril for the server side, done right.
 
 Supports rendering strings, nodes, and even components. Also features some other
