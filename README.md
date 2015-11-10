@@ -12,7 +12,13 @@ Supports rendering strings, nodes, and even components. Also features some other
 npm install --save m-iso
 ```
 
-The string renderer is also browser-safe through Browserify or Webpack, as it's pure JS, and doesn't need anything beyond the module loader. It has 0 dependencies, even on native modules, and it's pretty small, running at about 4.1kb in a minified, gzipped Browserify standalone build (none is officially provided, it's pretty simple).
+## Why not [mithril-node-render](https://github.com/StephanHoyer/mithril-node-render)?
+
+(I've been asked this a few times.)
+
+That module is great for just stringifying Mithril templates into HTML, and is very well suited to that use case.
+
+The problem is that it's not very pluggable (fixable without a rewrite), and I needed something far heavier on the server side. Something that I can use dependency injection to use stateful components unmodified on the server side. I need something with Mithril's state model as well as rendering to strings. One thing I'm planning on eventually adding here is server-side routing and state management.
 
 ## Examples
 
@@ -299,17 +305,13 @@ Note that these are parsed as any other tag. XML declaration attributes can be s
 
 Use the issue tracker.
 
-There's also a few things I would like to add eventually, in decreasing order of likelihood it's going to get much work done on by me:
+There's still things I want to add, in decreasing order of priority:
 
-- Hooks for pretty-printing.
-- `m.withAttr()` to make function strings similarly to Mithril's making
-  anonymous functions.
+- Hooks for customized pretty-printing.
+- `m.withAttr()` to make function strings similarly to Mithril's making anonymous functions.
 - `m.request()` for easier access on server side.
 - `m.route()` for organizing routes.
-- An internal representation to manage things (and not just stringify them).
-  Along with this would come `m.render()` on an existing root, and `m.redraw()`,
-  `m.redraw.strategy()`, `m.startComputation()`, and `m.endComputation()` for
-  dealing with redraws. This could also become pluggable.
+- An internal representation to manage component trees (and not just stringify them). Along with this would come `m.render()` on an existing root, and `m.redraw()`, `m.redraw.strategy()`, `m.startComputation()`, and `m.endComputation()` for dealing with redraws. This could also become pluggable.
 - `m.mount()` for mounting onto existing nodes.
 - `m.request.mock()` for mocking requests.
 
