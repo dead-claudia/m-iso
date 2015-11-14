@@ -160,7 +160,7 @@ Alias of `m.component` for consistency.
 
 Trust this string. Same as [Mithril's `m.trust()`](http://mithril.js.org/mithril.trust.html). If you need to render a string that doesn't need escaping, this is how you do it.
 
-**`m.render(tree, type="html", voids?)`**
+**`m.render(tree, type="html", voids?, hooks?)`**
 
 Renders a node tree to some format. It infers the type if you don't give it explicitly, but do use a `!doctype` or XML declaration.
 
@@ -179,6 +179,10 @@ Renders a node tree to some format. It infers the type if you don't give it expl
   Note that due to an implementation detail, if you pass an explicit `type` and also include an XML declaration, it will be changed as the XML variant of that type, if applicable, e.g. `"html"` to `"html-polygot"`.
 
 - `voids` - The list to check against to figure out what's a void element and what's not, such as `<br>` and `<img>`. This replaces the internal list for that respective type. This argument is meaningless and ignored when in `"xml"` mode.
+
+- `hooks` - A plain object with hooks for the string renderer. Currently, there's only one hook, but there may be more later:
+
+    - `print(node)` - Takes a virtual node, and returns a transformed node.
 
 Note that also, `type` can be inferred from the tree itself, if you use a `!doctype` or XML declaration. Here's how values are inferred
 
@@ -307,8 +311,8 @@ Use the issue tracker.
 
 There's still things I want to add, in decreasing order of priority:
 
-- Hooks for customized pretty-printing.
-- `m.withAttr()` to make function strings similarly to Mithril's making anonymous functions.
+- `m.withAttr()` to make strings similarly to Mithril's making anonymous functions.
+- Hooks for an external renderer.
 - `m.request()` for easier access on server side.
 - `m.route()` for organizing routes.
 - An internal representation to manage component trees (and not just stringify them). Along with this would come `m.render()` on an existing root, and `m.redraw()`, `m.redraw.strategy()`, `m.startComputation()`, and `m.endComputation()` for dealing with redraws. This could also become pluggable.
