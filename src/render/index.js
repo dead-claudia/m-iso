@@ -62,12 +62,17 @@ class Renderer {
     }
 
     set(type) {
-        assert.equal(typeof type, "string")
+        if (process.env.NODE_ENV === "development") {
+            assert.equal(typeof type, "string")
+        }
+
         this.kind = getTypeCross(this.kind, type)
     }
 
     renderDoctype(children) {
-        assert(Array.isArray(children))
+        if (process.env.NODE_ENV === "development") {
+            assert(Array.isArray(children))
+        }
 
         if (this.next === "body") {
             throw new Error("Cannot introduce declarations in body")
@@ -127,7 +132,9 @@ class Renderer {
     }
 
     renderXmlDeclaration(attrs) {
-        assert(_.isObject(attrs))
+        if (process.env.NODE_ENV === "development") {
+            assert(_.isObject(attrs))
+        }
 
         if (this.next === "body") {
             throw new Error("Cannot introduce declarations in body")
