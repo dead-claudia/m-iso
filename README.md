@@ -65,7 +65,7 @@ It also allows for several output formats:
 
 - HTML5
 - HTML4 (legacy)
-- Polygot HTML5
+- Polyglot HTML5
 - XHTML1
 - XML
 
@@ -171,7 +171,7 @@ Renders a node tree to some format. It infers the type if you don't give it expl
   Possible values (this will error if given an invalid, non-null value):
 
   - `"html"` - HTML5 (this is the default)
-  - `"html-polygot"` - Polygot HTML markup
+  - `"html-polyglot"` - Polyglot HTML markup
   - `"html4"` - Legacy HTML 4.01
   - `"xhtml"` - Legacy XHTML 1
   - `"xml"` - XML 1.0/1.1
@@ -321,14 +321,11 @@ Pull requests are most definitely welcome. Tests are run through Travis CI on No
 
 This project in its entirety is run through ESLint.
 
-This adheres to the same style guide as [Mithril](https://github.com/impinball/mithril.js/blob/patch-2/CONTRIBUTING.md) (TODO: change link once merged) with a couple exceptions:
-
-- Indent is 4 spaces, not hard tabs.
-- Use Unix line endings
+As for a style guide, check out the [eslint config](https://github.com/impinball/m-iso/blob/master/.eslintrc).
 
 ## Other Information
 
-Do note that this is more permissive than Mithril in what a component can return. This will accept anything from a single node to a nested array of mixed strings, nodes, and even ES6 Symbols. It'l also accept anything that provides a view function as input, even if it's just a `{view: function () {}}`, returning `undefined`. 
+Do note that this is more permissive than Mithril in what a component can return. This will accept anything from a single node to a nested array of mixed strings, nodes, and even ES6 Symbols. It'll also accept anything that provides a view function as input, even if it's just a `{view: function () {}}`, returning `undefined`.
 
 ## License
 

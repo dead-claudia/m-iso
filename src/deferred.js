@@ -1,6 +1,4 @@
-"use strict"
-
-var _ = require("./util.js")
+import * as _ from "./util.js"
 
 // Promiz.mithril.js | Zolmeister | MIT
 // a modified version of Promiz.js, which does not conform to Promises/A+
@@ -12,18 +10,20 @@ var _ = require("./util.js")
 //    of triggering rejection (because the spec does not account for the
 //    important use case of default browser error handling, i.e. message w/
 //    line number)
-var RESOLVING = 1
-var REJECTING = 2
-var RESOLVED = 3
-var REJECTED = 4
+const RESOLVING = 1
+const REJECTING = 2
+const RESOLVED = 3
+const REJECTED = 4
 
-var d = module.exports.deferred = function () {
-    var deferred = new Deferred()
+function d() {
+    const deferred = new Deferred()
     deferred.promise = propify(deferred.promise)
     return deferred
 }
 
-var makeProp = module.exports.prop = function (store) {
+export {d as deferred}
+
+function makeProp(store) {
     if ((store != null && _.isObject(store) || _.isFunction(store)) &&
             _.isFunction(store.then)) {
         return propify(store)
@@ -31,6 +31,8 @@ var makeProp = module.exports.prop = function (store) {
         return gettersetter(store)
     }
 }
+
+export {makeProp as prop}
 
 function gettersetter(store) {
     function prop() {
@@ -46,7 +48,7 @@ function gettersetter(store) {
 }
 
 function propify(promise, initialValue) {
-    var prop = makeProp(initialValue)
+    const prop = makeProp(initialValue)
     promise.then(prop)
 
     prop.then = function (resolve, reject) {
@@ -60,15 +62,11 @@ function propify(promise, initialValue) {
             return d().resolve(callback()).promise
         }
 
-        return prop.then(function (value) {
-            return propify(_callback().then(function () {
-                return value
-            }), initialValue)
-        }, function (reason) {
-            return propify(_callback().then(function () {
+        return prop.then(
+            value => propify(_callback().then(() => value), initialValue),
+            reason => propify(_callback().then(() => {
                 throw new Error(reason)
-            }), initialValue)
-        })
+            }), initialValue))
     }
 
     return prop
@@ -88,10 +86,10 @@ d.onerror = function (e) {
 }
 
 function Deferred(onSuccess, onFailure) {
-    var self = this
-    var state = 0
-    var promiseValue = 0
-    var next = []
+    const self = this
+    let state = 0
+    let promiseValue = 0
+    const next = []
 
     self.promise = {}
 
@@ -115,8 +113,8 @@ function Deferred(onSuccess, onFailure) {
         return this
     }
 
-    self.promise.then = function (onSuccess, onFailure) {
-        var deferred = new Deferred(onSuccess, onFailure)
+    self.promise.then = (onSuccess, onFailure) => {
+        const deferred = new Deferred(onSuccess, onFailure)
         if (state === RESOLVED) {
             deferred.resolve(promiseValue)
         } else if (state === REJECTED) {
@@ -129,7 +127,7 @@ function Deferred(onSuccess, onFailure) {
 
     function finish(type) {
         state = type || REJECTED
-        _.forEach(next, function (deferred) {
+        _.forEach(next, deferred => {
             if (state === RESOLVED) {
                 deferred.resolve(promiseValue)
             } else {
@@ -143,16 +141,18 @@ function Deferred(onSuccess, onFailure) {
                 _.isFunction(promiseValue)) && _.isFunction(then)) {
             try {
                 // count protects against abuse calls from spec checker
-                var count = 0
-                then.call(promiseValue, function (value) {
-                    if (count++) return
-                    promiseValue = value
-                    success()
-                }, function (value) {
-                    if (count++) return
-                    promiseValue = value
-                    fail()
-                })
+                let count = 0
+                then.call(promiseValue,
+                    value => {
+                        if (count++) return
+                        promiseValue = value
+                        success()
+                    },
+                    value => {
+                        if (count++) return
+                        promiseValue = value
+                        fail()
+                    })
             } catch (e) {
                 d.onerror(e)
                 promiseValue = e
@@ -165,7 +165,7 @@ function Deferred(onSuccess, onFailure) {
 
     function fire() {
         // check if it's a thenable
-        var then
+        let then
         try {
             then = promiseValue && promiseValue.then
         } catch (e) {
@@ -179,45 +179,48 @@ function Deferred(onSuccess, onFailure) {
             d.onerror(promiseValue)
         }
 
-        thennable(then, function () {
-            state = RESOLVING
-            fire()
-        }, function () {
-            state = REJECTING
-            fire()
-        }, function () {
-            try {
-                if (state === RESOLVING && _.isFunction(onSuccess)) {
-                    promiseValue = onSuccess(promiseValue)
-                } else if (state === REJECTING && _.isFunction(onFailure)) {
-                    promiseValue = onFailure(promiseValue)
-                    state = RESOLVING
+        thennable(then,
+            () => {
+                state = RESOLVING
+                fire()
+            },
+            () => {
+                state = REJECTING
+                fire()
+            },
+            () => {
+                try {
+                    if (state === RESOLVING && _.isFunction(onSuccess)) {
+                        promiseValue = onSuccess(promiseValue)
+                    } else if (state === REJECTING && _.isFunction(onFailure)) {
+                        promiseValue = onFailure(promiseValue)
+                        state = RESOLVING
+                    }
+                } catch (e) {
+                    d.onerror(e)
+                    promiseValue = e
+                    return finish()
                 }
-            } catch (e) {
-                d.onerror(e)
-                promiseValue = e
-                return finish()
-            }
 
-            if (promiseValue === self) {
-                promiseValue = TypeError()
-                finish()
-            } else {
-                thennable(then, function () {
-                    finish(RESOLVED)
-                }, finish, function () {
-                    finish(state === RESOLVING && RESOLVED)
-                })
-            }
-        })
+                if (promiseValue === self) {
+                    promiseValue = TypeError()
+                    finish()
+                } else {
+                    thennable(then, () => {
+                        finish(RESOLVED)
+                    }, finish, () => {
+                        finish(state === RESOLVING && RESOLVED)
+                    })
+                }
+            })
     }
 }
 
-module.exports.sync = function (args) {
-    var deferred = d()
-    var outstanding = args.length
-    var results = new Array(outstanding)
-    var method = "resolve"
+export function sync(args) {
+    const deferred = d()
+    let outstanding = args.length
+    const results = new Array(outstanding)
+    let method = "resolve"
 
     function synchronizer(pos, resolved) {
         return function (value) {
@@ -232,7 +235,7 @@ module.exports.sync = function (args) {
     }
 
     if (args.length > 0) {
-        _.forEach(args, function (arg, i) {
+        _.forEach(args, (arg, i) => {
             arg.then(synchronizer(i, true), synchronizer(i, false))
         })
     } else {

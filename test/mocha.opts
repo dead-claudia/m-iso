@@ -1,0 +1,5 @@
+--recursive
+--ui bdd
+--reporter dot
+--compilers js:./scripts/register.js
+--require ./scripts/set-env.js
