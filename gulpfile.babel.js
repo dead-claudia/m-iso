@@ -16,7 +16,7 @@ gulp.task("lint", () => {
 })
 
 // Testing against this a temporary workaround for mysterious Babel bug in Node
-// 0.10 and 0.12 (c.f. #1)
+// 0.10 and 0.12 (c.f. #1, https://github.com/babel/babel/issues/3075)
 gulp.task("debug", ["lint"], () => {
     process.env.NODE_ENV = "development"
     return gulp.src("src/**/*.js")
