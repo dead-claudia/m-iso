@@ -1,4 +1,4 @@
-import * as common from "../../src/render/common.js"
+import * as common from "../../debug/render/common.js"
 
 import * as sinon from "sinon"
 import chai, {expect} from "chai"
@@ -132,8 +132,8 @@ describe("render/common", () => {
     })
 
     describe("escape()", () => {
-        const renderer = require("../../src/render/renderer.js")
-        const trust = require("../../src/constructor.js").trust
+        const renderer = require("../../debug/render/renderer.js")
+        const trust = require("../../debug/constructor.js").trust
 
         it("exists", () => {
             expect(common.escape).to.be.a("function")

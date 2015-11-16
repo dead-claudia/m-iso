@@ -1,9 +1,9 @@
-import Builder from "../../../src/render/types/builder.js"
-import Wrapper from "../../../src/render/hooks.js"
+import Builder from "../../../debug/render/types/builder.js"
+import Wrapper from "../../../debug/render/hooks.js"
 
-import m, {trust as mtrust} from "../../../src/constructor.js"
-import {n, trust as rtrust, types} from "../../../src/render/renderer.js"
-import {hash} from "../../../src/util.js"
+import m, {trust as mtrust} from "../../../debug/constructor.js"
+import {n, trust as rtrust, types} from "../../../debug/render/renderer.js"
+import {hash} from "../../../debug/util.js"
 
 // import * as sinon from "sinon"
 import chai, {expect} from "chai"

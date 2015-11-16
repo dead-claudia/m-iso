@@ -1,6 +1,6 @@
-import m, * as mithril from "../../src/constructor.js"
+import m, * as mithril from "../../debug/constructor.js"
 const {trust} = mithril
-import {render} from "../../src/render/index.js"
+import {render} from "../../debug/render/index.js"
 
 import * as sinon from "sinon"
 import chai, {expect} from "chai"

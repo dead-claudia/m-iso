@@ -1,4 +1,4 @@
-import Wrapper from "../../src/render/hooks.js"
+import Wrapper from "../../debug/render/hooks.js"
 
 import {expect} from "chai"
 

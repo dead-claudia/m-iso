@@ -1,4 +1,4 @@
-import m, * as mithril from "../src/constructor.js"
+import m, * as mithril from "../debug/constructor.js"
 const {r} = mithril
 
 import * as sinon from "sinon"

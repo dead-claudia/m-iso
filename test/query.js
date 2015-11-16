@@ -1,4 +1,4 @@
-import {buildQueryString, parseQueryString} from "../src/query.js"
+import {buildQueryString, parseQueryString} from "../debug/query.js"
 
 import {expect} from "chai"
 

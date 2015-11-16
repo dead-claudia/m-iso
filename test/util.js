@@ -1,4 +1,4 @@
-import * as util from "../src/util.js"
+import * as util from "../debug/util.js"
 
 import chai, {expect} from "chai"
 import * as sinon from "sinon"
