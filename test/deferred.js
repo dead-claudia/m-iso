@@ -1,4 +1,4 @@
-import * as m from "../src/deferred.js"
+import * as m from "../debug/deferred.js"
 
 import * as sinon from "sinon"
 import chai, {expect} from "chai"

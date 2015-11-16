@@ -1,4 +1,4 @@
-import m from "../src/index.js"
+import m from "../debug/index.js"
 
 import {expect} from "chai"
 

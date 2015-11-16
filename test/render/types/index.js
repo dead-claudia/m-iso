@@ -1,7 +1,7 @@
-import getType, * as t from "../../../src/render/types/index.js"
+import getType, * as t from "../../../debug/render/types/index.js"
 
-import m from "../../../src/constructor.js"
-import {types, trust} from "../../../src/render/renderer.js"
+import m from "../../../debug/constructor.js"
+import {types, trust} from "../../../debug/render/renderer.js"
 
 import * as sinon from "sinon"
 import chai, {expect} from "chai"

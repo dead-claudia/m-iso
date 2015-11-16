@@ -1,4 +1,4 @@
-import * as renderer from "../../src/render/renderer.js"
+import * as renderer from "../../debug/render/renderer.js"
 
 import {expect} from "chai"
 
