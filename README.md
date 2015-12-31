@@ -2,6 +2,16 @@
 
 ***This package is deprecated, as Mithril doesn't require a lot of modifications to implement this.***
 
+***UPDATE:*** I am considering resurrecting this project, since there are still things this could do that Mithril itself is likely not to support directly, but this could, because the rendering is abstracted:
+
+1. A potential renderer could be written to use native bindings to write desktop apps.
+2. A potential renderer could be written so this could render native views instead of HTML/etc.
+3. A potential renderer could use this to prerender client views, complete with controllers and remote requests.
+
+If I do, I will undeprecate on npm. In the meantime, it's republished, but deprecated, as a reservation.
+
+---
+
 [![Build Status](https://travis-ci.org/isiahmeadows/m-iso.svg)](https://travis-ci.org/isiahmeadows/m-iso)
 
 Mithril for the server side, done right.
