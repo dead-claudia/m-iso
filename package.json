@@ -1,6 +1,6 @@
 {
   "name": "m-iso",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Mithril for the server side, done right.",
   "main": "dist/index.js",
   "jsnext:main": "es6/jsnext-index.js",
