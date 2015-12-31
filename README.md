@@ -2,7 +2,7 @@
 
 ***This package is deprecated, as Mithril doesn't require a lot of modifications to implement this.***
 
-[![Build Status](https://travis-ci.org/impinball/m-iso.svg)](https://travis-ci.org/impinball/m-iso)
+[![Build Status](https://travis-ci.org/isiahmeadows/m-iso.svg)](https://travis-ci.org/isiahmeadows/m-iso)
 
 Mithril for the server side, done right.
 
