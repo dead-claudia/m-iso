@@ -8,7 +8,7 @@
 2. A potential renderer could be written so this could render native views instead of HTML/etc.
 3. A potential renderer could use this to prerender client views, complete with controllers and remote requests.
 
-If I do, I will undeprecate on npm. In the meantime, it's republished, but deprecated, as a reservation.
+If I do, I will undeprecate this on npm. In the meantime, it's republished, but deprecated, as a reservation.
 
 ---
 
