@@ -46,7 +46,7 @@
     "chai": "^3.4.0",
     "del": "^2.0.2",
     "eslint": "^1.9.0",
-    "eslint-config-isiahmeadows": "github:isiahmeadows/eslint-config-isiahmeadows",
+    "eslint-config-isiahmeadows": "^0.0.2",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.0",
     "gulp-eslint": "^1.1.0",
